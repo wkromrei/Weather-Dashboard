@@ -9,23 +9,30 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
     crossorigin="anonymous"
     />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 <body>
-   <header class="bg-dark text-white">
-    <h1>Weather Forecast</h1>
+   <header class="bg-primary text-white text-center">
+    <h1>Weather Dashboard</h1>
    </header> 
-   <main>
-        <div class="row">
+   <main> 
+      
+         <div id="bigFirstCard">
+         </div>
+        <div id="fiveDayForecast"class="row">
            <div class="col-12 col-md-3" >
                 <h2>Search for a City:</h2>
                     <input id="city"></input>
                     <a id="btn-search" class="btn btn-info">Search</a>
                     <div id="searched-cities"></div>
+                    <div id="history">
+
+                    </div>
             </div>
            <div class="col-12 col-lg-9">
            </div>
         </div>
    </main>
-   <script src="./js/index.js"></script>
+   <script src="./assets/js/index.js"></script>
 </body>
 </html>

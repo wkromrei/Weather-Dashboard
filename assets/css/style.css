@@ -1,0 +1,16 @@
+#day1card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.card-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border-color: yellow;
+    padding: 20px;
+    margin: 10px;
+    background-color: aqua;
+}
