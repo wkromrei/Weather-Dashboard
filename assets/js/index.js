@@ -76,7 +76,7 @@ async function getWeather(){
 }
 document.getElementById("btn-search").addEventListener("click", async function(){
 
-getWeather()
+getWeather(seaerchedLocations[i]);
 
 })
 
