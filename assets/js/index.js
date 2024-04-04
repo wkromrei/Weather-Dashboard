@@ -57,14 +57,14 @@ async function getWeather(){
     var day3 = createWeatherCard(weatherResponse.list[16])
     var day4 = createWeatherCard(weatherResponse.list[24])
     var day5 = createWeatherCard(weatherResponse.list[32])
-    var day6 = createWeatherCard(weatherResponse.list[39])
+    // var day6 = createWeatherCard(weatherResponse.list[39])
 
     forecast.appendChild (day1)
     forecast.appendChild (day2) 
     forecast.appendChild (day3) 
     forecast.appendChild (day4) 
     forecast.appendChild (day5)
-    forecast.appendChild (day6)  
+    // forecast.appendChild (day6)  
 
 //    takes var day1 out and styles it
 
