@@ -35,7 +35,7 @@ async function getWeather(){
     bigFirstCard.textContent = ""
     forecast.textContent = ""
     const APIkey = "9d255a9b735d4fb0704a54b600d7fdfb";
-    const geoqueryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},US&limit=5&appid=${APIkey}`;
+    const geoqueryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city},US&limit=5&appid=${APIkey}`;
     
     var geoResult = await fetch (geoqueryURL);
     var geoResponse = await geoResult.json();
