@@ -14,14 +14,12 @@ previouslySearchedEl = document.getElementById('history');
         searchedContainer.classList = 'w-100 previous-search';
         searchedContainer.textContent = `${searchedLocations[i]}`;
         previouslySearchedEl.append(searchedContainer);
+        searchedContainer.addEventListener("click", function(){
+            getWeather()
+        } );
  }};
  searchHistory()
-
-document.getElementById("btn-search").addEventListener("click", async function(){
-
-    
-    
-  
+async function getWeather(){
     let city = document.getElementById("city").value
     searchedLocations.push(city);
     localStorage.setItem('allCities', JSON.stringify(searchedLocations));
@@ -32,7 +30,10 @@ document.getElementById("btn-search").addEventListener("click", async function()
     previouslySearchedEl.append(searchedContainer);
     
     const fiveDayForecast = document.getElementById('fiveDayForecast');
-    const bigFirstCard = document.getElementById('bigFirstCard')
+    const forecast = document.getElementById('forecast');
+    const bigFirstCard = document.getElementById('bigFirstCard');
+    bigFirstCard.textContent = ""
+    forecast.textContent = ""
     const APIkey = "9d255a9b735d4fb0704a54b600d7fdfb";
     const geoqueryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},US&limit=5&appid=${APIkey}`;
     
@@ -58,37 +59,43 @@ document.getElementById("btn-search").addEventListener("click", async function()
     var day5 = createWeatherCard(weatherResponse.list[32])
     var day6 = createWeatherCard(weatherResponse.list[39])
 
-    fiveDayForecast.innerHTML += day1
-    fiveDayForecast.innerHTML += day2 
-    fiveDayForecast.innerHTML += day3 
-    fiveDayForecast.innerHTML += day4 
-    fiveDayForecast.innerHTML += day5
-    fiveDayForecast.innerHTML += day6  
+    forecast.appendChild (day1)
+    forecast.appendChild (day2) 
+    forecast.appendChild (day3) 
+    forecast.appendChild (day4) 
+    forecast.appendChild (day5)
+    forecast.appendChild (day6)  
 
 //    takes var day1 out and styles it
+
     const bigCard = document.createElement('div');
-    bigCard.innerHTML = day1; 
-     bigCard.classList = 'id="day1card" text-center p-3 ml-3 mr-3';
+    bigCard.appendChild(day1); 
+    bigCard.classList = 'id="day1card" text-center p-3 ml-3 mr-3';
     bigFirstCard.prepend(bigCard);
 
-//    searchDisplay.innerHTML += day1;
+}
+document.getElementById("btn-search").addEventListener("click", async function(){
+
+getWeather()
+
 })
 
 function createWeatherCard (weatherData) {
-    let container = `<div class="card-container">`
-   
+    let container = document.createElement("div");
+    container.classList.add("card-container");
+    console.log(container)
     const forecast = document.getElementById("searched-cities");
     while(forecast.hasChildNodes()){
         forecast.removeChild(forecast.firstChild)
     };
 
     
-    container += `<h3>${new Date(weatherData.dt_txt).toLocaleDateString()}</h3>`
-    container += `<h5>Temp is ${weatherData.main.temp}°F</h5>`
-    container += `<h5>Humidity is ${weatherData.main.humidity}%</h5>`
-    container += `<h5>Feels like ${weatherData.main.feels_like}°F</h5>`
-    container += `<h5>Wind speed ${weatherData.wind.speed}MPH</h5>`
-    container +="</div>"
+    container.appendChild(document.createElement("h3")).textContent=`${new Date(weatherData.dt_txt).toLocaleDateString()}`
+    container.appendChild(document.createElement("h5")).textContent=`Temp is ${weatherData.main.temp}°F`
+    container.appendChild(document.createElement("h5")).textContent=`Humidity is ${weatherData.main.humidity}%`
+    container.appendChild(document.createElement("h5")).textContent=`Feels like ${weatherData.main.feels_like}°F`
+    container.appendChild(document.createElement("h5")).textContent=`Wind speed ${weatherData.wind.speed}MPH`
+    
 
     return container
 
