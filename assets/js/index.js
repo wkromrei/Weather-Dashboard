@@ -1,4 +1,6 @@
-
+// I want cards to be arranged horizontally instead of displaying vertically.
+// I want searched locations to not create another button if I'm clicking on a past location, only for new ones typed.
+// I want the largest card to display the city name as well. 
 
 
 
@@ -15,12 +17,13 @@ previouslySearchedEl = document.getElementById('history');
         searchedContainer.textContent = `${searchedLocations[i]}`;
         previouslySearchedEl.append(searchedContainer);
         searchedContainer.addEventListener("click", function(){
-            getWeather()
+            getWeather(searchedLocations[i])
         } );
  }};
  searchHistory()
 async function getWeather(){
-    let city = document.getElementById("city").value
+    let city = document.getElementById("city").value.trim()
+
     searchedLocations.push(city);
     localStorage.setItem('allCities', JSON.stringify(searchedLocations));
 
@@ -28,6 +31,9 @@ async function getWeather(){
     searchedContainer.classList = 'w-100 previous-search';
     searchedContainer.textContent = `${city}`;
     previouslySearchedEl.append(searchedContainer);
+    searchedContainer.addEventListener("click", function(){
+        getWeather(city)
+    } );
     
     const fiveDayForecast = document.getElementById('fiveDayForecast');
     const forecast = document.getElementById('forecast');
@@ -76,7 +82,7 @@ async function getWeather(){
 }
 document.getElementById("btn-search").addEventListener("click", async function(){
 
-getWeather(seaerchedLocations[i]);
+getWeather(searchedLocations);
 
 })
 
@@ -88,7 +94,9 @@ function createWeatherCard (weatherData) {
     while(forecast.hasChildNodes()){
         forecast.removeChild(forecast.firstChild)
     };
-
+    // let city = document.getElementById("city").value.trim()
+    // container.appendChild(document.createElement("h5")).tentContent=searchedLocations.value
+    // container.appendChild(document.createElement("h3")).textContent= document.getElementById("city").value.trim()
     
     container.appendChild(document.createElement("h3")).textContent=`${new Date(weatherData.dt_txt).toLocaleDateString()}`
     container.appendChild(document.createElement("h5")).textContent=`Temp is ${weatherData.main.temp}°F`
