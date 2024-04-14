@@ -35,7 +35,7 @@ async function getWeather(){
         getWeather(city)
     } );
     
-    const fiveDayForecast = document.getElementById('fiveDayForecast');
+    // const fiveDayForecast = document.getElementById('fiveDayForecast');
     const forecast = document.getElementById('forecast');
     const bigFirstCard = document.getElementById('bigFirstCard');
     bigFirstCard.textContent = ""
